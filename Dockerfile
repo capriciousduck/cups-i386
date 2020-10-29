@@ -1,5 +1,5 @@
-FROM resin/rpi-raspbian
-MAINTAINER Ammon Sarver <manofarms@gmail.com>
+FROM i386/debian:buster-slim
+MAINTAINER Krishna Chaitanya
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -35,5 +35,6 @@ RUN useradd \
   && mkdir /var/lib/apt/lists/partial
 
 COPY etc-cups/cupsd.conf /etc/cups/cupsd.conf
+VOLUME ["/etc/cups"]
 EXPOSE 631
 ENTRYPOINT ["/usr/sbin/cupsd", "-f"]
